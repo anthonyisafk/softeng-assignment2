@@ -57,7 +57,7 @@ paths:
   /user/{id}/sight:
     post:
       description: FR3 - Add a sight to my wishlist
-      operationId: Addsight
+      operationId: addSight
       parameters:
       - name: id
         in: path
@@ -135,7 +135,7 @@ paths:
           format: int64
       - name: tourId
         in: path
-        description: tourId of the tour
+        description: id of the tour
         required: true
         style: simple
         explode: false
@@ -177,7 +177,7 @@ paths:
           format: int64
       - name: tourId
         in: path
-        description: tourId of the tour
+        description: id of the tour
         required: true
         style: simple
         explode: false
@@ -196,7 +196,7 @@ paths:
   /user/{id}/whishlist:
     get:
       description: FR7 - View my sight wishlist
-      operationId: viewWhishlist
+      operationId: viewWishlist
       parameters:
       - name: id
         in: path
@@ -209,7 +209,7 @@ paths:
           format: int64
       responses:
         "200":
-          description: View successfully wishlist
+          description: View wishlist successfully
           content:
             application/json:
               schema:
@@ -224,7 +224,7 @@ paths:
                 $ref: '#/components/schemas/Error'
   /user/{id}/tours:
     get:
-      description: FR8 - View my tour wishlist
+      description: FR8 - View my tour list
       operationId: viewTours
       parameters:
       - name: id
@@ -238,7 +238,7 @@ paths:
           format: int64
       responses:
         "200":
-          description: View successfully wishlist
+          description: View tour list successfully
           content:
             application/json:
               schema:
@@ -291,7 +291,7 @@ paths:
       parameters:
       - name: tourguideId
         in: path
-        description: tourguide that edits the tour
+        description: Τourguide that edits the tour
         required: true
         style: simple
         explode: false
