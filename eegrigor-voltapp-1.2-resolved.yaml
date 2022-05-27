@@ -1,0 +1,518 @@
+---
+openapi: 3.0.0
+info:
+  title: Voltapp API
+  description: Voltap API draft
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Antonios Antoniou, Polydoros Giannouris, Efthimios Grigorakis, Anestis Kaimakamidis
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: "1.2"
+servers:
+- url: https://virtserver.swaggerhub.com/eegrigor/voltapp/1.0
+  description: SwaggerHub API Auto Mocking
+- url: https://b98f878f-7158-420f-8470-0ad12c0a2a68.mock.pstmn.io
+paths:
+  /users:
+    get:
+      description: |
+        Get all users
+      parameters:
+      - name: tags
+        in: query
+        description: filter users
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: limit
+        in: query
+        description: how many users are returned
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/{id}/sight:
+    post:
+      description: FR3 - Add a sight to my wishlist
+      operationId: Addsight
+      parameters:
+      - name: id
+        in: path
+        description: user that adds the sight
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Sight to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sight'
+        required: true
+      responses:
+        "200":
+          description: sight added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sight'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/{id}/sight/{whishlistId}:
+    delete:
+      description: FR4 - Delete  sight from my whishlist
+      operationId: deleteSight
+      parameters:
+      - name: id
+        in: path
+        description: id of ther user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: whishlistId
+        in: path
+        description: whishlist id of the sight we want to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: delete success
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/{id}/tour/{tourId}:
+    post:
+      description: FR5 - Join a tour
+      operationId: joinTour
+      parameters:
+      - name: id
+        in: path
+        description: id of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: tourId
+        in: path
+        description: tourId of the tour
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: Tour to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tour'
+        required: true
+      responses:
+        "200":
+          description: joined the tour
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      description: FR6 - Leave a tour
+      operationId: leaveTour
+      parameters:
+      - name: id
+        in: path
+        description: id of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: tourId
+        in: path
+        description: tourId of the tour
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Left tour successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/{id}/whishlist:
+    get:
+      description: FR7 - View my sight wishlist
+      operationId: viewWhishlist
+      parameters:
+      - name: id
+        in: path
+        description: id of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: View successfully wishlist
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sight'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/{id}/tours:
+    get:
+      description: FR8 - View my tour wishlist
+      operationId: viewTours
+      parameters:
+      - name: id
+        in: path
+        description: id of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: View successfully wishlist
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tour'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /tourguide/{tourguideId}/tour:
+    post:
+      description: FR9 - Create a tour
+      operationId: createTour
+      parameters:
+      - name: tourguideId
+        in: path
+        description: tourguide that creates the tour
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        description: Tour to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tour'
+        required: true
+      responses:
+        "200":
+          description: tour created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /tourguide/{tourguideId}/tour/{tourId}:
+    put:
+      description: FR10 - Edit a tour
+      operationId: editTour
+      parameters:
+      - name: tourguideId
+        in: path
+        description: tourguide that edits the tour
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: tourId
+        in: path
+        description: tour that is editted
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        description: Tour to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tour'
+        required: true
+      responses:
+        "200":
+          description: tour created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      description: FR11 - Cancel a tour
+      operationId: cancelTour
+      parameters:
+      - name: tourguideId
+        in: path
+        description: id of the tourguide
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: tourId
+        in: path
+        description: tour that is canceled
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Cancel tour successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /admin/{adminId}/changerole:
+    put:
+      description: FR12 - Change role
+      operationId: changeRole
+      parameters:
+      - name: adminId
+        in: path
+        description: admin that change role
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: User that is changed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          description: user is changed into tourguide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tourguide'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    User:
+      required:
+      - adress
+      - birthdate
+      - datesprovided
+      - email
+      - firstname
+      - id
+      - password
+      - surname
+      - tours
+      - toursattented
+      - username
+      - whishlist
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        birthdate:
+          type: array
+          items:
+            type: integer
+        firstname:
+          type: string
+        surname:
+          type: string
+        adress:
+          type: string
+        whishlist:
+          type: array
+          items:
+            type: object
+        tours:
+          type: array
+          items:
+            type: object
+        toursattented:
+          type: integer
+        datesprovided:
+          type: array
+          items:
+            type: integer
+    Tourguide:
+      allOf:
+      - $ref: '#/components/schemas/User'
+      - required:
+        - tourguideId
+        - tourstohost
+        type: object
+        properties:
+          tourguideId:
+            type: integer
+          tourstohost:
+            type: array
+            items:
+              type: object
+    Guest:
+      required:
+      - userId
+      type: object
+      properties:
+        userId:
+          type: integer
+    Sight:
+      required:
+      - availableTours
+      - sightlocation
+      - sightname
+      - wishlistId
+      type: object
+      properties:
+        sightname:
+          type: string
+        sightlocation:
+          type: object
+        availableTours:
+          type: object
+        wishlistId:
+          type: integer
+    Tour:
+      required:
+      - date
+      - maxparticipants
+      - participants
+      - sight
+      - time
+      - tourId
+      - tourguide
+      type: object
+      properties:
+        sight:
+          type: object
+        date:
+          type: array
+          items:
+            type: integer
+            format: int64
+        time:
+          type: integer
+        tourId:
+          type: integer
+        maxparticipants:
+          type: integer
+        participants:
+          type: object
+        tourguide:
+          type: object
+    Error:
+      required:
+      - code
+      - message
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
