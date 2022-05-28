@@ -254,24 +254,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /tourguide/{tourguideId}:
+  /tourguide/{userID}:
     post:
       description: FR12 - Add a user to the tour guide database
       operationId: changeRole
       parameters:
-      - name: tourguideId
+      - name: userID
         in: path
-        description: the ID given to the tour guide, on top of their userID
+        description: the userID that's added to the database of tour guides
         required: true
         style: simple
         schema:
-          type: integer
-          format: int64
+          type: string
       responses:
         "200":
           description: Successfully changed user role
         default:
           description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      description: Needed to know if a user is authorized to be a tour guide
+      operationId: isTourGuide
+      parameters: 
+      - name: userID
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: string
+      responses:
+        "200":
+          description: User is also a tour guide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tourguide'
+        default:
+          description: User is not a tour guide
           content:
             application/json:
               schema:
@@ -386,7 +408,6 @@ components:
     User:
       required:
       - id
-      - tourguideid
       - username
       - password
       - address
@@ -402,9 +423,6 @@ components:
       properties:
         id:
           type: string
-        tourguideid:
-          type: integer
-          format: int64
         username:
           type: string
         password:
