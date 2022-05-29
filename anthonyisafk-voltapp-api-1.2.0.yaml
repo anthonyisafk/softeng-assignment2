@@ -22,6 +22,7 @@ paths:
     get:
       description: |
         Get all users
+      operationId: getUsers
       parameters:
       - name: tags
         in: query
@@ -58,145 +59,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /user/{id}/sight:
-    post:
-      description: FR3 - Add a sight to my wishlist
-      operationId: addSight
-      parameters:
-      - name: id
-        in: path
-        description: user that adds the sight
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      requestBody:
-        description: Sight to be added
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Sight'
-        required: true
-      responses:
-        "200":
-          description: sight added
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Sight'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /user/{id}/sight/{wishlistId}:
-    delete:
-      description: FR4 - Delete  sight from my whishlist
-      operationId: deleteSight
-      parameters:
-      - name: id
-        in: path
-        description: id of ther user
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      - name: wishlistId
-        in: path
-        description: wishlist id of the sight we want to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: delete success
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /user/{id}/tour/{tourId}:
-    post:
-      description: FR5 - Join a tour
-      operationId: joinTour
-      parameters:
-      - name: id
-        in: path
-        description: id of the user
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      - name: tourId
-        in: path
-        description: id of the tour
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      requestBody:
-        description: Tour to be added
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Tour'
-        required: true
-      responses:
-        "200":
-          description: joined the tour
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Tour'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-    delete:
-      description: FR6 - Leave a tour
-      operationId: leaveTour
-      parameters:
-      - name: id
-        in: path
-        description: id of the user
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      - name: tourId
-        in: path
-        description: id of the tour
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: Left tour successfully
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /user/{id}/wishlist:
     get:
       description: FR7 - View my sight wishlist
       operationId: viewWishlist
@@ -224,8 +86,81 @@ paths:
           content:
             application/json:
               schema:
+                $ref: '#/components/schemas/Error'                    
+  /user/{user-id}/sight/{sight-id}:
+    put:
+      description: FR3 - Add a sight to my wishlist
+      operationId: addSight
+      parameters:
+      - name: user-id
+        in: path
+        description: user that adds the sight
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: sight-id
+        in: path
+        description: user that adds the sight
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64          
+      requestBody:
+        description: Sight to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewSight'
+        required: true
+      responses:
+        "200":
+          description: sight added
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
                 $ref: '#/components/schemas/Error'
-  /user/{id}/tours:
+    delete:
+      description: FR4 - Delete  sight from my wishlist
+      operationId: deleteSight
+      parameters:
+      - name: user-id
+        in: path
+        description: id of ther user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: sight-id
+        in: path
+        description: wishlist id of the sight we want to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: delete success
+          content:
+            application/json:
+              schema:
+                type: object # return user and sight id
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'            
+  /user/{id}/tour:
     get:
       description: FR8 - View my tour list
       operationId: viewTours
@@ -248,6 +183,83 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Tour'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/{id}/tour/{tour-id}:
+    post:
+      description: FR5 - Join a tour
+      operationId: joinTour
+      parameters:
+      - name: id
+        in: path
+        description: id of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: tour-id
+        in: path
+        description: id of the tour
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: Tour to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTour'
+        required: true
+      responses:
+        "200":
+          description: joined the tour
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      description: FR6 - Leave a tour
+      operationId: leaveTour
+      parameters:
+      - name: id
+        in: path
+        description: id of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: tour-id
+        in: path
+        description: id of the tour
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Left tour successfully
+          content:
+            application/json:
+              schema:
+                type: object # return user and tour id
         default:
           description: unexpected error
           content:
@@ -410,9 +422,7 @@ components:
       - id
       - username
       - password
-      - address
       - birthdate
-      - datesprovided
       - email
       - firstname
       - surname
@@ -451,13 +461,6 @@ components:
         toursattented:
           type: integer
           format: int32
-        datesprovided:
-          type: array
-          items:
-            type: array # from - to
-            maxItems: 2
-            items:
-              $ref: '#/components/schemas/Date'
     Tourguide:
       allOf:
       - $ref: '#/components/schemas/User'
@@ -477,14 +480,30 @@ components:
         userId:
           type: integer
           format: int64
-    Sight:
+    NewSight:
       required:
-      - availableTours
-      - sightlocation
-      - sightname
-      - wishlistId
+      - name
+      - fromDate
+      - toDate
       type: object
       properties:
+        name:
+          type: string
+        fromDate:
+          type: object
+        toDate:
+          type: object 
+    Sight:
+      required:
+      - sightId
+      - sightname
+      - availableTours
+      - sightlocation
+      type: object
+      properties:
+        sightId: 
+          type: integer
+          format: int64
         sightname:
           type: string
         sightlocation:
@@ -492,9 +511,10 @@ components:
         availableTours:
           type: array
           items:
-            type: object            
-        wishlistId:
-          type: integer
+            type: object   
+    NewTour:
+      required:
+      - sightId
     Tour:
       required:
       - date
