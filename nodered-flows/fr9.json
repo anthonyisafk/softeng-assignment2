@@ -1,0 +1,147 @@
+[
+    {
+        "id": "971089c501ab09db",
+        "type": "tab",
+        "label": "FR9 - Create a tour",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2b6d6fcb6b02019e",
+        "type": "http in",
+        "z": "971089c501ab09db",
+        "name": "",
+        "url": "/tourguide/:tourguideId/tour",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 160,
+        "wires": [
+            [
+                "ecbcdd68d4e44034",
+                "b8ecb4190daeca02"
+            ]
+        ]
+    },
+    {
+        "id": "ecbcdd68d4e44034",
+        "type": "function",
+        "z": "971089c501ab09db",
+        "name": "",
+        "func": "msg.payload = msg.payload.tourId\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 160,
+        "wires": [
+            [
+                "e9102d1b35ab9f03"
+            ]
+        ]
+    },
+    {
+        "id": "e9102d1b35ab9f03",
+        "type": "http response",
+        "z": "971089c501ab09db",
+        "name": "get user tour list",
+        "statusCode": "200",
+        "headers": {},
+        "x": 690,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "205ccff97cab91bc",
+        "type": "inject",
+        "z": "971089c501ab09db",
+        "name": "Create a tour",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"sightID\":12,\"date\":[2022,6,12],\"maxparticipants\":20,\"participants\":[\"5d3ba6cf-740e-404f-8301-22ee55830610\",\"37b82f89-20b4-41fb-8bac-5db02a37190e0\"],\"time\":[10,0,0],\"tourId\":1234,\"tourguideID\":\"5d3ba6cf-740e-404f-8301-22ee55830610\"}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "59f239ea24ef915e"
+            ]
+        ]
+    },
+    {
+        "id": "59f239ea24ef915e",
+        "type": "http request",
+        "z": "971089c501ab09db",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "localhost:1880/tourguide/5d3ba6cf-740e-404f-8301-22ee55830610/tour",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 370,
+        "y": 300,
+        "wires": [
+            [
+                "5b583f1d9a2c9a60"
+            ]
+        ]
+    },
+    {
+        "id": "5b583f1d9a2c9a60",
+        "type": "debug",
+        "z": "971089c501ab09db",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "b6314be4d929a421",
+        "type": "comment",
+        "z": "971089c501ab09db",
+        "name": "FR9 - Create a tour",
+        "info": "",
+        "x": 130,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "b8ecb4190daeca02",
+        "type": "debug",
+        "z": "971089c501ab09db",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 220,
+        "wires": []
+    }
+]

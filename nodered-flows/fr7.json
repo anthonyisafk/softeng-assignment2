@@ -1,0 +1,142 @@
+[
+    {
+        "id": "567a5027de887bf7",
+        "type": "tab",
+        "label": "FR7 - View my sight wishlist",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d55c5145eea5ba01",
+        "type": "http in",
+        "z": "567a5027de887bf7",
+        "name": "",
+        "url": "/user/:id/sight",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 180,
+        "wires": [
+            [
+                "ff78aac1ee1ce5e7",
+                "a1f13d9629200564"
+            ]
+        ]
+    },
+    {
+        "id": "ff78aac1ee1ce5e7",
+        "type": "function",
+        "z": "567a5027de887bf7",
+        "name": "",
+        "func": "msg.payload = [\n    {\n        \"sightId\": 12398745,\n        \"sightname\": \"Aristotelous Square\",\n        \"sightlocation\": \"Thessaloniki, Greece\",\n        \"availableTours\": [\n            { \n                \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n                \"tourId\": 123654,\n                \"sight\": 1236985,\n                \"date\": [2022, 7, 12],\n                \"time\" : 1200,\n                \"maxparticipants\": 30,\n                \"participants\": [\n                    \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n                    \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n                    \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n                    \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n                ]\n            },\n            {\n                \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n                \"tourId\": 123654,\n                \"sight\": 1236985,\n                \"date\": [2022, 7, 12],\n                \"time\" : 1200,\n                \"maxparticipants\": 30,\n                    \"participants\": [\n                    \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n                    \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n                    \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n                    \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n                ]\n            }\n        ]\n    },\n    {\n        \"sightId\": 12398745,\n        \"sightname\": \"Aristotelous Square\",\n        \"sightlocation\": \"Thessaloniki, Greece\",\n        \"availableTours\": [\n            { \n                \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n                \"tourId\": 123654,\n                \"sight\": 1236985,\n                \"date\": [2022, 7, 12],\n                \"time\" : 1200,\n                \"maxparticipants\": 30,\n                \"participants\": [\n                    \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n                    \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n                    \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n                    \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n                ]\n            },\n            {\n                \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n                \"tourId\": 123654,\n                \"sight\": 1236985,\n                \"date\": [2022, 7, 12],\n                \"time\" : 1200,\n                \"maxparticipants\": 30,\n                    \"participants\": [\n                    \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n                    \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n                    \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n                    \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n                ]\n            }\n        ]\n    }    \n]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "528a7bb63244f40b"
+            ]
+        ]
+    },
+    {
+        "id": "528a7bb63244f40b",
+        "type": "http response",
+        "z": "567a5027de887bf7",
+        "name": "get user wishlist",
+        "statusCode": "200",
+        "headers": {},
+        "x": 660,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "1cf3dec47f66b3b6",
+        "type": "inject",
+        "z": "567a5027de887bf7",
+        "name": "getUsers",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 200,
+        "y": 300,
+        "wires": [
+            [
+                "1c9d316a29c41ef9"
+            ]
+        ]
+    },
+    {
+        "id": "1c9d316a29c41ef9",
+        "type": "http request",
+        "z": "567a5027de887bf7",
+        "name": "get user wishlist",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "localhost:1880/user/5d3ba6cf-740e-404f-8301-22ee55830610/sight",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 440,
+        "y": 300,
+        "wires": [
+            [
+                "0a852410cb9f4c43"
+            ]
+        ]
+    },
+    {
+        "id": "0a852410cb9f4c43",
+        "type": "debug",
+        "z": "567a5027de887bf7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4237b938ef3d8b67",
+        "type": "comment",
+        "z": "567a5027de887bf7",
+        "name": "FR7 - View my sight wishlist",
+        "info": "",
+        "x": 180,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "a1f13d9629200564",
+        "type": "debug",
+        "z": "567a5027de887bf7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 220,
+        "wires": []
+    }
+]

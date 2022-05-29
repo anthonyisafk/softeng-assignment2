@@ -1,0 +1,142 @@
+[
+    {
+        "id": "251087fd4ed25708",
+        "type": "tab",
+        "label": "FR8 - View my tour list",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "82191c4c5cfe0608",
+        "type": "http in",
+        "z": "251087fd4ed25708",
+        "name": "",
+        "url": "/user/:id/tours",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 140,
+        "wires": [
+            [
+                "a547a6c5a484fe55",
+                "7dd5466f0836c4b8"
+            ]
+        ]
+    },
+    {
+        "id": "a547a6c5a484fe55",
+        "type": "function",
+        "z": "251087fd4ed25708",
+        "name": "",
+        "func": "msg.payload = [\n    {\n      \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n      \"tourId\": 123654,\n      \"sight\": 1236985,\n      \"date\": [2022, 7, 12],\n      \"time\" : 1200,\n      \"maxparticipants\": 30,\n      \"participants\": [\n        \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n        \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n        \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n        \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n      ]\n    },\n    {\n      \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n      \"tourId\": 123654,\n      \"sight\": 1236985,\n      \"date\": [2022, 7, 12],\n      \"time\" : 1200,\n      \"maxparticipants\": 30,\n      \"participants\": [\n        \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n        \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n        \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n        \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n      ]\n    },\n    {\n      \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n      \"tourId\": 123654,\n      \"sight\": 1236985,\n      \"date\": [2022, 7, 12],\n      \"time\" : 1200,\n      \"maxparticipants\": 30,\n      \"participants\": [\n        \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n        \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n        \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n        \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n      ]\n    }    \n]\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 140,
+        "wires": [
+            [
+                "7fb524a81e0bf2ca"
+            ]
+        ]
+    },
+    {
+        "id": "7fb524a81e0bf2ca",
+        "type": "http response",
+        "z": "251087fd4ed25708",
+        "name": "get user tour list",
+        "statusCode": "200",
+        "headers": {},
+        "x": 720,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "92d934a35ee5f7e5",
+        "type": "inject",
+        "z": "251087fd4ed25708",
+        "name": "viewTours",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 180,
+        "y": 260,
+        "wires": [
+            [
+                "f4c7b11062892148"
+            ]
+        ]
+    },
+    {
+        "id": "f4c7b11062892148",
+        "type": "http request",
+        "z": "251087fd4ed25708",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "localhost:1880/user/5d3ba6cf-740e-404f-8301-22ee55830610/tours",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "80542926a948b658"
+            ]
+        ]
+    },
+    {
+        "id": "80542926a948b658",
+        "type": "debug",
+        "z": "251087fd4ed25708",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "c36d0f7c37ab70c1",
+        "type": "comment",
+        "z": "251087fd4ed25708",
+        "name": "FR8 - View my tour list",
+        "info": "",
+        "x": 160,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "7dd5466f0836c4b8",
+        "type": "debug",
+        "z": "251087fd4ed25708",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 200,
+        "wires": []
+    }
+]

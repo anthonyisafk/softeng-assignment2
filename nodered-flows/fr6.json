@@ -1,0 +1,149 @@
+[
+    {
+        "id": "57870d771583f7b6",
+        "type": "tab",
+        "label": "FR6 - Leave a tour",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c7c5817880f30917",
+        "type": "comment",
+        "z": "57870d771583f7b6",
+        "name": "FR6 - Leave a tour",
+        "info": "",
+        "x": 150,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "37796a30c447bc19",
+        "type": "http in",
+        "z": "57870d771583f7b6",
+        "name": "",
+        "url": "/user/:userid/tour/:tourid",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "ebf8ddb0b6aff5d5",
+                "9bed8dc091999e88"
+            ]
+        ]
+    },
+    {
+        "id": "9bed8dc091999e88",
+        "type": "debug",
+        "z": "57870d771583f7b6",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "ebf8ddb0b6aff5d5",
+        "type": "function",
+        "z": "57870d771583f7b6",
+        "name": "",
+        "func": "msg.payload = {\n    \"user-id\": msg.req.params.userid,\n    \"tour-id\": msg.req.params.tourid\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 160,
+        "wires": [
+            [
+                "7462c6da5dbd7bae"
+            ]
+        ]
+    },
+    {
+        "id": "7462c6da5dbd7bae",
+        "type": "http response",
+        "z": "57870d771583f7b6",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 700,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b486ec536757e9b4",
+        "type": "inject",
+        "z": "57870d771583f7b6",
+        "name": "Leave a tour",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 320,
+        "wires": [
+            [
+                "09ab1f28a58b736d"
+            ]
+        ]
+    },
+    {
+        "id": "09ab1f28a58b736d",
+        "type": "http request",
+        "z": "57870d771583f7b6",
+        "name": "",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "localhost:1880/user/5d3ba6cf-740e-404f-8301-22ee55830610/tour/1239587",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "219cf28f1c30645a"
+            ]
+        ]
+    },
+    {
+        "id": "219cf28f1c30645a",
+        "type": "debug",
+        "z": "57870d771583f7b6",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 320,
+        "wires": []
+    }
+]

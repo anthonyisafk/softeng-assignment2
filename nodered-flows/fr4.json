@@ -1,0 +1,153 @@
+[
+    {
+        "id": "670cb2aea0965ff6",
+        "type": "tab",
+        "label": "FR4 - Delete  sight from my wishlist",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b3484f511191c56d",
+        "type": "comment",
+        "z": "670cb2aea0965ff6",
+        "name": "FR4 - Delete  sight from my wishlist",
+        "info": "",
+        "x": 200,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "0c3ba75d700787a8",
+        "type": "http in",
+        "z": "670cb2aea0965ff6",
+        "name": "",
+        "url": "/user/:userid/sight/:sightid",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "12a5da62125b5d57",
+                "b688257956289541"
+            ]
+        ]
+    },
+    {
+        "id": "b688257956289541",
+        "type": "debug",
+        "z": "670cb2aea0965ff6",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "12a5da62125b5d57",
+        "type": "function",
+        "z": "670cb2aea0965ff6",
+        "name": "",
+        "func": "msg.req.statusCode = 200;\nmsg.payload = {\n    \"id\": msg.req.params.userid,\n    \"sight-id\": msg.req.params.sightid\n} \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 160,
+        "wires": [
+            [
+                "0f1b0163f69e6be9"
+            ]
+        ]
+    },
+    {
+        "id": "0f1b0163f69e6be9",
+        "type": "http response",
+        "z": "670cb2aea0965ff6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cbb91ca2a83168d0",
+        "type": "inject",
+        "z": "670cb2aea0965ff6",
+        "name": "Remove sight from wishlist",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 320,
+        "wires": [
+            [
+                "5281f54ac14dfa44"
+            ]
+        ]
+    },
+    {
+        "id": "5281f54ac14dfa44",
+        "type": "http request",
+        "z": "670cb2aea0965ff6",
+        "name": "",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "localhost:1880/user/12abc456/sight/4598",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 530,
+        "y": 320,
+        "wires": [
+            [
+                "94c5731a2da1ddd1"
+            ]
+        ]
+    },
+    {
+        "id": "94c5731a2da1ddd1",
+        "type": "debug",
+        "z": "670cb2aea0965ff6",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 320,
+        "wires": []
+    }
+]
