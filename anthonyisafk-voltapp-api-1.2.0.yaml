@@ -336,7 +336,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Tour'
+                type: integer
+                format: int64 # return the tour id
         default:
           description: unexpected error
           content:
@@ -369,7 +370,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Tour'
+              $ref: '#/components/schemas/EditTour'
         required: true
       responses:
         "200":
@@ -409,6 +410,11 @@ paths:
       responses:
         "200":
           description: Cancel tour successfully
+          content:
+            application/json:
+              schema:
+                type: integer
+                format: int64 # return the tour id
         default:
           description: unexpected error
           content:
@@ -515,13 +521,33 @@ components:
     NewTour:
       required:
       - sightId
+    EditTour:
+      required:
+      - newDate
+      - newFromTime
+      - newToTime
+      - newMaxParticipants
+      type: object
+      properties:
+        newDate:
+          type: object # (#/components/schemas/Date)
+        newFromTime:
+          type: integer
+          format: int32
+        newToTime:
+          type: integer
+          format: int32  
+        newMaxParticipants:
+          type: integer
+          format: int32
     Tour:
       required:
       - date
       - maxparticipants
       - participants
       - sight
-      - time
+      - fromtime
+      - toTime
       - tourId
       - tourguide
       type: object
@@ -532,7 +558,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Date'
-        time:
+        fromtime:
+          type: integer
+          format: int32
+        toTime:
           type: integer
           format: int32
         tourId:
