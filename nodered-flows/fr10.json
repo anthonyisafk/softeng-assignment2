@@ -1,0 +1,152 @@
+[
+    {
+        "id": "34885d3d6669d288",
+        "type": "tab",
+        "label": "FR10 - Edit a tour",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a2a76b257a188903",
+        "type": "comment",
+        "z": "34885d3d6669d288",
+        "name": "FR10 - Edit a tour",
+        "info": "",
+        "x": 150,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "ff877d75676d4158",
+        "type": "http in",
+        "z": "34885d3d6669d288",
+        "name": "",
+        "url": "/tourguide/:userid/tour/:tourid",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 160,
+        "wires": [
+            [
+                "98203db5ae34d68b",
+                "fd3dd9db2ec3f0c3"
+            ]
+        ]
+    },
+    {
+        "id": "4dd72752052779ae",
+        "type": "http request",
+        "z": "34885d3d6669d288",
+        "name": "",
+        "method": "PUT",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "localhost:1880/tourguide/5d3ba6cf-740e-404f-8301-22ee55830610/tour/45698712",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 450,
+        "y": 300,
+        "wires": [
+            [
+                "0382c6f0c4498f12"
+            ]
+        ]
+    },
+    {
+        "id": "40eb3450c47c7342",
+        "type": "http response",
+        "z": "34885d3d6669d288",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 760,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "98203db5ae34d68b",
+        "type": "function",
+        "z": "34885d3d6669d288",
+        "name": "form the whole Tour struct",
+        "func": "sight = {\n    \"sightID\": 12,\n    \"date\": [\n        2022,\n        6,\n        12\n    ],\n    \"maxparticipants\": 20,\n    \"participants\": [\n        \"5d3ba6cf-740e-404f-8301-22ee55830610\",\n        \"37b82f89-20b4-41fb-8bac-5db02a37190e0\"\n    ],\n    \"fromTime\": 1200,\n    \"toTime\": 1300,\n    \"tourId\": 1234,\n    \"tourguideID\": \"5d3ba6cf-740e-404f-8301-22ee55830610\"\n}\n\nnewInfo = msg.payload\nsight.date = newInfo.date\nsight.fromTime = newInfo.fromTime\nsight.toTime = newInfo.toTime\nsight.maxparticipants = newInfo.maxparticipants\n\nmsg.payload = sight\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 160,
+        "wires": [
+            [
+                "40eb3450c47c7342"
+            ]
+        ]
+    },
+    {
+        "id": "fd3dd9db2ec3f0c3",
+        "type": "debug",
+        "z": "34885d3d6669d288",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "4c2751f782dfc380",
+        "type": "inject",
+        "z": "34885d3d6669d288",
+        "name": "Edit tour details",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"date\":[2022,6,13],\"fromTime\":1320,\"toTime\":1400,\"maxparticipants\":35}",
+        "payloadType": "json",
+        "x": 200,
+        "y": 300,
+        "wires": [
+            [
+                "4dd72752052779ae"
+            ]
+        ]
+    },
+    {
+        "id": "0382c6f0c4498f12",
+        "type": "debug",
+        "z": "34885d3d6669d288",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 300,
+        "wires": []
+    }
+]

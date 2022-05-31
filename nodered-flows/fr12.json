@@ -1,0 +1,153 @@
+[
+    {
+        "id": "da78d5a56163d518",
+        "type": "tab",
+        "label": "FR12 - Add a user to the tour guide database",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "78b5cd66fbf44e86",
+        "type": "comment",
+        "z": "da78d5a56163d518",
+        "name": "FR12 - Add a user to the tour guide database",
+        "info": "",
+        "x": 250,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e3c480edc1fcb242",
+        "type": "http in",
+        "z": "da78d5a56163d518",
+        "name": "",
+        "url": "/tourguide/:userid",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 160,
+        "wires": [
+            [
+                "616ad0d9858ab2ba",
+                "792402e0be294f84"
+            ]
+        ]
+    },
+    {
+        "id": "792402e0be294f84",
+        "type": "function",
+        "z": "da78d5a56163d518",
+        "name": "",
+        "func": "msg.statusCode = 200\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 160,
+        "wires": [
+            [
+                "23b44dbf33dfbb3b"
+            ]
+        ]
+    },
+    {
+        "id": "23b44dbf33dfbb3b",
+        "type": "http response",
+        "z": "da78d5a56163d518",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "616ad0d9858ab2ba",
+        "type": "debug",
+        "z": "da78d5a56163d518",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "20d77a4e5a5d4112",
+        "type": "http request",
+        "z": "da78d5a56163d518",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "localhost:1880/tourguide/5d3ba6cf-740e-404f-8301-22ee55830610",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 470,
+        "y": 300,
+        "wires": [
+            [
+                "59d56b94955dec9e"
+            ]
+        ]
+    },
+    {
+        "id": "f0c6057742f38ebd",
+        "type": "inject",
+        "z": "da78d5a56163d518",
+        "name": "Upgrade user role",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 300,
+        "wires": [
+            [
+                "20d77a4e5a5d4112"
+            ]
+        ]
+    },
+    {
+        "id": "59d56b94955dec9e",
+        "type": "debug",
+        "z": "da78d5a56163d518",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 300,
+        "wires": []
+    }
+]

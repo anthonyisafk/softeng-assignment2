@@ -1,0 +1,153 @@
+[
+    {
+        "id": "959c7187bd50d002",
+        "type": "tab",
+        "label": "FR11 - Cancel a tour",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8a21d0c8fded309a",
+        "type": "comment",
+        "z": "959c7187bd50d002",
+        "name": "FR11 - Cancel a tour",
+        "info": "",
+        "x": 170,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "2752eaa6f9e0bfab",
+        "type": "http in",
+        "z": "959c7187bd50d002",
+        "name": "",
+        "url": "/tourguide/:userid/tour/:tourid",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 260,
+        "y": 160,
+        "wires": [
+            [
+                "ea0e190335d21dbf"
+            ]
+        ]
+    },
+    {
+        "id": "ea0e190335d21dbf",
+        "type": "function",
+        "z": "959c7187bd50d002",
+        "name": "",
+        "func": "msg.payload = msg.req.params.tourid\nmsg.statusCode = 200;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 160,
+        "wires": [
+            [
+                "85f6fc3204f05972",
+                "63594aed900f95fc"
+            ]
+        ]
+    },
+    {
+        "id": "85f6fc3204f05972",
+        "type": "debug",
+        "z": "959c7187bd50d002",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "6f813f4f636e955a",
+        "type": "inject",
+        "z": "959c7187bd50d002",
+        "name": "Cancel a tour",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "2d86ba6a056140c1"
+            ]
+        ]
+    },
+    {
+        "id": "2d86ba6a056140c1",
+        "type": "http request",
+        "z": "959c7187bd50d002",
+        "name": "",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "localhost:1880/tourguide/5d3ba6cf-740e-404f-8301-22ee55830610/tour/45698712",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 450,
+        "y": 300,
+        "wires": [
+            [
+                "6a71346016ce9ccc"
+            ]
+        ]
+    },
+    {
+        "id": "63594aed900f95fc",
+        "type": "http response",
+        "z": "959c7187bd50d002",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "6a71346016ce9ccc",
+        "type": "debug",
+        "z": "959c7187bd50d002",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 300,
+        "wires": []
+    }
+]
