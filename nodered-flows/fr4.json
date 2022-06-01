@@ -119,12 +119,16 @@
         "method": "DELETE",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "localhost:1880/user/12abc456/sight/4598",
+        "url": "localhost:1880/user/5d3ba6cf-740e-404f-8301-22ee55830610/sight/4598",
         "tls": "",
         "persist": false,
         "proxy": "",
         "authType": "",
         "senderr": false,
+        "credentials": {
+            "user": "",
+            "password": ""
+        },
         "x": 530,
         "y": 320,
         "wires": [
