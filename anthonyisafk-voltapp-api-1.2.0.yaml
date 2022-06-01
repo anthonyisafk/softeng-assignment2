@@ -70,8 +70,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
-          format: int64
+          type: string
       responses:
         "200":
           description: View wishlist successfully
@@ -136,8 +135,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
-          format: int64
+          type: string
       - name: sight-id
         in: path
         description: wishlist id of the sight we want to delete
@@ -172,8 +170,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
-          format: int64
+          type: string
       responses:
         "200":
           description: View tour list successfully
@@ -242,8 +239,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
-          format: int64
+          type: string
       - name: tour-id
         in: path
         description: id of the tour
@@ -322,7 +318,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       requestBody:
         description: Tour to be created
         content:
@@ -356,7 +352,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       - name: tourId
         in: path
         description: tour that is editted
@@ -365,6 +361,7 @@ paths:
         explode: false
         schema:
           type: integer
+          format: int64
       requestBody:
         description: Tour to be created
         content:
@@ -396,8 +393,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
-          format: int64
+          type: string
       - name: tourId
         in: path
         description: tour that is canceled
