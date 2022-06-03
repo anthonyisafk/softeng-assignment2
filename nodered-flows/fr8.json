@@ -30,7 +30,7 @@
         "type": "function",
         "z": "251087fd4ed25708",
         "name": "",
-        "func": "msg.payload = [\n    {\n      \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n      \"tourId\": 123654,\n      \"sight\": 1236985,\n      \"date\": [2022, 7, 12],\n      \"time\" : 1200,\n      \"maxparticipants\": 30,\n      \"participants\": [\n        \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n        \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n        \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n        \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n      ]\n    },\n    {\n      \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n      \"tourId\": 123654,\n      \"sight\": 1236985,\n      \"date\": [2022, 7, 12],\n      \"time\" : 1200,\n      \"maxparticipants\": 30,\n      \"participants\": [\n        \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n        \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n        \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n        \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n      ]\n    },\n    {\n      \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n      \"tourId\": 123654,\n      \"sight\": 1236985,\n      \"date\": [2022, 7, 12],\n      \"time\" : 1200,\n      \"maxparticipants\": 30,\n      \"participants\": [\n        \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n        \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n        \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n        \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n      ]\n    }    \n]\nreturn msg",
+        "func": "msg.payload = [\n    {\n      \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n      \"tourId\": 123654,\n      \"sight\": 1236985,\n      \"date\": [2022, 7, 12],\n      \"fromTime\" : 1200,\n      \"toTime\" : 1300,\n      \"maxparticipants\": 30,\n      \"participants\": [\n        \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n        \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n        \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n        \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n      ]\n    },\n    {\n      \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n      \"tourId\": 123654,\n      \"sight\": 1236985,\n      \"date\": [2022, 7, 12],\n      \"fromTime\" : 1200,\n      \"toTime\" : 1300,\n      \"maxparticipants\": 30,\n      \"participants\": [\n        \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n        \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n        \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n        \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n      ]\n    },\n    {\n      \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n      \"tourId\": 123654,\n      \"sight\": 1236985,\n      \"date\": [2022, 7, 12],\n      \"fromTime\" : 1200,\n      \"toTime\" : 1300,\n      \"maxparticipants\": 30,\n      \"participants\": [\n        \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n        \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n        \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n        \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n      ]\n    }    \n]\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -66,8 +66,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 180,
-        "y": 260,
+        "x": 160,
+        "y": 300,
         "wires": [
             [
                 "f4c7b11062892148"
@@ -78,7 +78,7 @@
         "id": "f4c7b11062892148",
         "type": "http request",
         "z": "251087fd4ed25708",
-        "name": "",
+        "name": "view tours list",
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
@@ -88,8 +88,8 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
-        "x": 370,
-        "y": 260,
+        "x": 400,
+        "y": 300,
         "wires": [
             [
                 "80542926a948b658"
@@ -108,8 +108,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 590,
-        "y": 260,
+        "x": 630,
+        "y": 300,
         "wires": []
     },
     {

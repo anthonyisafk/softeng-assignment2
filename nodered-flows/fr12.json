@@ -13,7 +13,7 @@
         "z": "da78d5a56163d518",
         "name": "FR12 - Add a user to the tour guide database",
         "info": "",
-        "x": 250,
+        "x": 230,
         "y": 80,
         "wires": []
     },
@@ -31,7 +31,7 @@
         "wires": [
             [
                 "616ad0d9858ab2ba",
-                "792402e0be294f84"
+                "576438f8a4c40ddb"
             ]
         ]
     },
@@ -46,7 +46,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
+        "x": 640,
         "y": 160,
         "wires": [
             [
@@ -61,7 +61,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 690,
+        "x": 770,
         "y": 160,
         "wires": []
     },
@@ -86,7 +86,7 @@
         "id": "20d77a4e5a5d4112",
         "type": "http request",
         "z": "da78d5a56163d518",
-        "name": "",
+        "name": "request update",
         "method": "POST",
         "ret": "obj",
         "paytoqs": "ignore",
@@ -96,7 +96,7 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
-        "x": 470,
+        "x": 480,
         "y": 300,
         "wires": [
             [
@@ -149,5 +149,32 @@
         "x": 690,
         "y": 300,
         "wires": []
+    },
+    {
+        "id": "576438f8a4c40ddb",
+        "type": "change",
+        "z": "da78d5a56163d518",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{\"access-control-allow-credentials\":true,\"access-control-allow-headers\":\"X-Requested-With,Content-Type,Accept,Origin\",\"access-control-allow-methods\":\"*\",\"access-control-allow-origin\":\"*\",\"cache-control\":\"no-cache\",\"content-encoding\":\"gzip\",\"content-length\":20,\"content-type\":\"application/json;charset=utf-8\",\"date\":\"Fri,03 Jun 2022 18:09:05 GMT\",\"etag\":\"W/\\\"14-4DhJ6nhrn3soo1wXlJ6FqT6xz/E\",\"expires\":-1,\"status\":\"200 OK\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 120,
+        "wires": [
+            [
+                "792402e0be294f84"
+            ]
+        ]
     }
 ]

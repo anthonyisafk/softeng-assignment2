@@ -16,7 +16,7 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 210,
+        "x": 170,
         "y": 160,
         "wires": [
             [
@@ -36,11 +36,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
+        "x": 420,
         "y": 160,
         "wires": [
             [
-                "e9102d1b35ab9f03"
+                "f6e2026deacc0ca8"
             ]
         ]
     },
@@ -51,7 +51,7 @@
         "name": "get user tour list",
         "statusCode": "200",
         "headers": {},
-        "x": 690,
+        "x": 820,
         "y": 160,
         "wires": []
     },
@@ -59,7 +59,7 @@
         "id": "205ccff97cab91bc",
         "type": "inject",
         "z": "971089c501ab09db",
-        "name": "Create a tour",
+        "name": "createTour",
         "props": [
             {
                 "p": "payload"
@@ -70,10 +70,10 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"sightID\":12,\"date\":[2022,6,12],\"maxparticipants\":20,\"participants\":[\"5d3ba6cf-740e-404f-8301-22ee55830610\",\"37b82f89-20b4-41fb-8bac-5db02a37190e0\"],\"time\":[10,0,0],\"tourId\":1234,\"tourguideID\":\"5d3ba6cf-740e-404f-8301-22ee55830610\"}",
+        "payload": "{\"sightID\":12,\"date\":[2022,6,12],\"maxparticipants\":20,\"participants\":[\"5d3ba6cf-740e-404f-8301-22ee55830610\",\"37b82f89-20b4-41fb-8bac-5db02a37190e0\"],\"fromTime\":1230,\"toTime\":1315,\"tourId\":1234,\"tourguideID\":\"5d3ba6cf-740e-404f-8301-22ee55830610\"}",
         "payloadType": "json",
-        "x": 170,
-        "y": 300,
+        "x": 120,
+        "y": 320,
         "wires": [
             [
                 "59f239ea24ef915e"
@@ -84,7 +84,7 @@
         "id": "59f239ea24ef915e",
         "type": "http request",
         "z": "971089c501ab09db",
-        "name": "",
+        "name": "Create a tour",
         "method": "POST",
         "ret": "obj",
         "paytoqs": "body",
@@ -94,8 +94,8 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
-        "x": 370,
-        "y": 300,
+        "x": 390,
+        "y": 320,
         "wires": [
             [
                 "5b583f1d9a2c9a60"
@@ -114,8 +114,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 630,
-        "y": 300,
+        "x": 650,
+        "y": 320,
         "wires": []
     },
     {
@@ -137,11 +137,39 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 490,
+        "x": 430,
         "y": 220,
         "wires": []
+    },
+    {
+        "id": "f6e2026deacc0ca8",
+        "type": "change",
+        "z": "971089c501ab09db",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{\"access-control-allow-credentials\":true,\"access-control-allow-headers\":\"X-Requested-With,Content-Type,Accept,Origin\",\"access-control-allow-methods\":\"*\",\"access-control-allow-origin\":\"*\",\"cache-control\":\"no-cache\",\"content-encoding\":\"gzip\",\"content-length\":183,\"content-type\":\"application/json;charset=utf-8\",\"date\":\"Fri,03 Jun 2022 18:34:22 GMT\",\"etag\":\"W/\\\"b7-c7ZB8cHfUmuRRz0YD9ycVGTKxmc\\\"\",\"expires\":-1,\"status\":\"200 OK\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 160,
+        "wires": [
+            [
+                "e9102d1b35ab9f03"
+            ]
+        ]
     }
 ]

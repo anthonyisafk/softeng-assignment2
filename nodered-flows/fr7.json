@@ -59,15 +59,15 @@
         "id": "1cf3dec47f66b3b6",
         "type": "inject",
         "z": "567a5027de887bf7",
-        "name": "getUsers",
+        "name": "viewWishlist",
         "props": [],
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 200,
-        "y": 300,
+        "x": 190,
+        "y": 320,
         "wires": [
             [
                 "1c9d316a29c41ef9"
@@ -78,7 +78,7 @@
         "id": "1c9d316a29c41ef9",
         "type": "http request",
         "z": "567a5027de887bf7",
-        "name": "get user wishlist",
+        "name": "view my sight wishlist",
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
@@ -88,8 +88,8 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
-        "x": 440,
-        "y": 300,
+        "x": 460,
+        "y": 320,
         "wires": [
             [
                 "0a852410cb9f4c43"
@@ -108,8 +108,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 650,
-        "y": 300,
+        "x": 690,
+        "y": 320,
         "wires": []
     },
     {

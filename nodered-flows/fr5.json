@@ -26,7 +26,7 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 260,
+        "x": 180,
         "y": 160,
         "wires": [
             [
@@ -39,18 +39,18 @@
         "id": "bc0b8f6afbad688b",
         "type": "function",
         "z": "dfe98f85f214f3d2",
-        "name": "",
+        "name": "Set payload",
         "func": "msg.payload = {\n      \"tourguide\": \"eb20c460-5655-4f3d-a658-f451d810a29f\",\n      \"tourId\": 123654,\n      \"sight\": 1236985,\n      \"date\": [2022, 7, 12],\n      \"time\" : 1200,\n      \"maxparticipants\": 30,\n      \"participants\": [\n        \"d2ac0d99-5169-4b46-bc2d-e796d483f12c\",\n        \"3af67f38-dc82-4984-9f16-14939e8dda4e\",\n        \"eb50d551-84be-4666-89f2-f8cf83d3fcbc\",\n        \"d63fe04d-05de-4ade-88a1-49b9b486ad97\"\n      ]\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
+        "x": 430,
         "y": 160,
         "wires": [
             [
-                "15c7b940805e3cf0"
+                "ab1b03d5dc8d6361"
             ]
         ]
     },
@@ -67,7 +67,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 510,
+        "x": 410,
         "y": 220,
         "wires": []
     },
@@ -78,7 +78,7 @@
         "name": "",
         "statusCode": "200",
         "headers": {},
-        "x": 740,
+        "x": 800,
         "y": 160,
         "wires": []
     },
@@ -86,7 +86,7 @@
         "id": "6f68a48a5613107c",
         "type": "inject",
         "z": "dfe98f85f214f3d2",
-        "name": "Join tour",
+        "name": "joinTour",
         "props": [
             {
                 "p": "payload"
@@ -99,7 +99,7 @@
         "topic": "",
         "payload": "{}",
         "payloadType": "json",
-        "x": 200,
+        "x": 130,
         "y": 320,
         "wires": [
             [
@@ -111,7 +111,7 @@
         "id": "71bb6e4800201d8f",
         "type": "http request",
         "z": "dfe98f85f214f3d2",
-        "name": "",
+        "name": "join tour",
         "method": "POST",
         "ret": "obj",
         "paytoqs": "ignore",
@@ -121,7 +121,7 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
-        "x": 430,
+        "x": 360,
         "y": 320,
         "wires": [
             [
@@ -141,8 +141,35 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 670,
+        "x": 610,
         "y": 320,
         "wires": []
+    },
+    {
+        "id": "ab1b03d5dc8d6361",
+        "type": "change",
+        "z": "dfe98f85f214f3d2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{\"access-control-allow-credentials\":true,\"access-control-allow-headers\":\"X-Requested-With,Content-Type,Accept,Origin\",\"access-control-allow-methods\":\"*\",\"access-control-allow-origin\":\"*\",\"cache-control\":\"no-cache\",\"content-encoding\":\"gzip\",\"content-length\":183,\"content-type\":\"application/json;charset=utf-8\",\"date\":\" Fri,03 Jun 2022 18:21:55 GMT\",\"etag\":\"W/\\\"b7-c7ZB8cHfUmuRRz0YD9ycVGTKxmc\\\"\",\"expires\":-1,\"status\":\"200 OK\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 160,
+        "wires": [
+            [
+                "15c7b940805e3cf0"
+            ]
+        ]
     }
 ]

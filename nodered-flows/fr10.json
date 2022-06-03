@@ -26,12 +26,12 @@
         "method": "put",
         "upload": false,
         "swaggerDoc": "",
-        "x": 230,
+        "x": 180,
         "y": 160,
         "wires": [
             [
-                "98203db5ae34d68b",
-                "fd3dd9db2ec3f0c3"
+                "fd3dd9db2ec3f0c3",
+                "2ed0c6763e7e1e97"
             ]
         ]
     },
@@ -39,7 +39,7 @@
         "id": "4dd72752052779ae",
         "type": "http request",
         "z": "34885d3d6669d288",
-        "name": "",
+        "name": "request edit",
         "method": "PUT",
         "ret": "obj",
         "paytoqs": "ignore",
@@ -49,6 +49,10 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
+        "credentials": {
+            "user": "",
+            "password": ""
+        },
         "x": 450,
         "y": 300,
         "wires": [
@@ -64,7 +68,7 @@
         "name": "",
         "statusCode": "200",
         "headers": {},
-        "x": 760,
+        "x": 840,
         "y": 160,
         "wires": []
     },
@@ -79,7 +83,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
+        "x": 640,
         "y": 160,
         "wires": [
             [
@@ -100,8 +104,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 490,
-        "y": 200,
+        "x": 450,
+        "y": 220,
         "wires": []
     },
     {
@@ -148,5 +152,32 @@
         "x": 730,
         "y": 300,
         "wires": []
+    },
+    {
+        "id": "2ed0c6763e7e1e97",
+        "type": "change",
+        "z": "34885d3d6669d288",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{\"access-control-allow-credentials\":true,\"access-control-allow-headers\":\"X-Requested-With,Content-Type,Accept,Origin\",\"access-control-allow-methods\":\"*\",\"access-control-allow-origin\":\"*\",\"cache-control\":\"no-cache\",\"content-encoding\":\"gzip\",\"content-length\":183,\"content-type\":\"application/json;charset=utf-8\",\"date\":\"Fri,03 Jun 2022 18:30:00 GMT\",\"etag\":\"W/\\\"b7-c7ZB8cHfUmuRRz0YD9ycVGTKxmc\\\"\",\"expires\":-1,\"status\":\"200 OK\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 120,
+        "wires": [
+            [
+                "98203db5ae34d68b"
+            ]
+        ]
     }
 ]

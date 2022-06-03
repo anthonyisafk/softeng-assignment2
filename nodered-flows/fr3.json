@@ -26,7 +26,7 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 230,
+        "x": 190,
         "y": 160,
         "wires": [
             [
@@ -42,7 +42,7 @@
         "name": "add sight to wishlist",
         "statusCode": "",
         "headers": {},
-        "x": 690,
+        "x": 850,
         "y": 160,
         "wires": []
     },
@@ -50,7 +50,7 @@
         "id": "3fcc6f92464068db",
         "type": "inject",
         "z": "71257af2e87ac99e",
-        "name": "Add new sight",
+        "name": "addSight",
         "props": [
             {
                 "p": "payload"
@@ -63,7 +63,7 @@
         "topic": "",
         "payload": "{\"name\":\"Stavros Niarchos\",\"fromDate\":[2022,7,1],\"toDate\":[2022,7,3]}",
         "payloadType": "json",
-        "x": 210,
+        "x": 160,
         "y": 320,
         "wires": [
             [
@@ -75,7 +75,7 @@
         "id": "7726fd52af7e2f2b",
         "type": "http request",
         "z": "71257af2e87ac99e",
-        "name": "",
+        "name": "add new sight",
         "method": "POST",
         "ret": "obj",
         "paytoqs": "body",
@@ -85,8 +85,7 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
-        "credentials": {},
-        "x": 430,
+        "x": 380,
         "y": 320,
         "wires": [
             [
@@ -107,7 +106,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 490,
+        "x": 450,
         "y": 220,
         "wires": []
     },
@@ -124,7 +123,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 630,
+        "x": 590,
         "y": 320,
         "wires": []
     },
@@ -132,14 +131,41 @@
         "id": "3324885eb4bd91bd",
         "type": "function",
         "z": "71257af2e87ac99e",
-        "name": "",
+        "name": "Status code",
         "func": "msg.statusCode = 200;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
+        "x": 450,
+        "y": 160,
+        "wires": [
+            [
+                "6bdf4ee192d85303"
+            ]
+        ]
+    },
+    {
+        "id": "6bdf4ee192d85303",
+        "type": "change",
+        "z": "71257af2e87ac99e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{\"access-control-allow-credentials\":true,\"access-control-allow-headers\":\"X-Requested-With,Content-Type,Accept,Origin\",\"access-control-allow-methods\":\"*\",\"access-control-allow-origin\":\"*\",\"cache-control\":\"no-cache\",\"content-encoding\":\"gzip\",\"content-length\":20,\"content-type\":\"application/json;charset=utf-8\",\"date\":\"Fri,03 Jun 2022 18:00:25 GMT\",\"etag\":\"W/\\\"14-4DhJ6nhrn3soo1wXlJ6FqT6xz/E\\\"\",\"expires\":-1,\"status\":\"200 OK\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
         "y": 160,
         "wires": [
             [

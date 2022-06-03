@@ -13,7 +13,7 @@
         "z": "670cb2aea0965ff6",
         "name": "FR4 - Delete  sight from my wishlist",
         "info": "",
-        "x": 200,
+        "x": 180,
         "y": 80,
         "wires": []
     },
@@ -26,7 +26,7 @@
         "method": "delete",
         "upload": false,
         "swaggerDoc": "",
-        "x": 250,
+        "x": 170,
         "y": 160,
         "wires": [
             [
@@ -48,7 +48,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 490,
+        "x": 410,
         "y": 220,
         "wires": []
     },
@@ -56,18 +56,18 @@
         "id": "12a5da62125b5d57",
         "type": "function",
         "z": "670cb2aea0965ff6",
-        "name": "",
+        "name": "Set payload",
         "func": "msg.req.statusCode = 200;\nmsg.payload = {\n    \"id\": msg.req.params.userid,\n    \"sight-id\": msg.req.params.sightid\n} \nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 500,
+        "x": 430,
         "y": 160,
         "wires": [
             [
-                "0f1b0163f69e6be9"
+                "eb31860ec0152127"
             ]
         ]
     },
@@ -78,7 +78,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 690,
+        "x": 790,
         "y": 160,
         "wires": []
     },
@@ -86,7 +86,7 @@
         "id": "cbb91ca2a83168d0",
         "type": "inject",
         "z": "670cb2aea0965ff6",
-        "name": "Remove sight from wishlist",
+        "name": "deleteSight",
         "props": [
             {
                 "p": "payload"
@@ -103,7 +103,7 @@
         "topic": "",
         "payload": "{}",
         "payloadType": "json",
-        "x": 250,
+        "x": 120,
         "y": 320,
         "wires": [
             [
@@ -115,7 +115,7 @@
         "id": "5281f54ac14dfa44",
         "type": "http request",
         "z": "670cb2aea0965ff6",
-        "name": "",
+        "name": "delete sight",
         "method": "DELETE",
         "ret": "obj",
         "paytoqs": "ignore",
@@ -125,11 +125,7 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
-        "credentials": {
-            "user": "",
-            "password": ""
-        },
-        "x": 530,
+        "x": 410,
         "y": 320,
         "wires": [
             [
@@ -146,12 +142,39 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 750,
+        "x": 650,
         "y": 320,
         "wires": []
+    },
+    {
+        "id": "eb31860ec0152127",
+        "type": "change",
+        "z": "670cb2aea0965ff6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{\"access-control-allow-credentials\":true,\"access-control-allow-headers\":\"X-Requested-With,Content-Type,Accept,Origin\",\"access-control-allow-methods\":\"*\",\"access-control-allow-origin\":\"*\",\"cache-control\":\"no-cache\",\"content-encoding\":\"gzip\",\"content-length\":24,\"content-type\":\"application/json;charset=utf-8\",\"date\":\"Fri,03 Jun 2022 18:07:12 GMT\",\"etag\":\"W/\\\"18-75CQH/5S+GSVjQZ7v4lQdeZ7cQQ\\\"\",\"expires\":-1,\"status\":\"200 OK\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 160,
+        "wires": [
+            [
+                "0f1b0163f69e6be9"
+            ]
+        ]
     }
 ]

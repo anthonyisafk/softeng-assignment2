@@ -26,7 +26,7 @@
         "method": "delete",
         "upload": false,
         "swaggerDoc": "",
-        "x": 250,
+        "x": 190,
         "y": 160,
         "wires": [
             [
@@ -48,7 +48,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 490,
+        "x": 410,
         "y": 220,
         "wires": []
     },
@@ -56,18 +56,18 @@
         "id": "ebf8ddb0b6aff5d5",
         "type": "function",
         "z": "57870d771583f7b6",
-        "name": "",
+        "name": "Set payload",
         "func": "msg.payload = {\n    \"user-id\": msg.req.params.userid,\n    \"tour-id\": msg.req.params.tourid\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 500,
+        "x": 430,
         "y": 160,
         "wires": [
             [
-                "7462c6da5dbd7bae"
+                "be97aeeb3917acdd"
             ]
         ]
     },
@@ -78,7 +78,7 @@
         "name": "",
         "statusCode": "200",
         "headers": {},
-        "x": 700,
+        "x": 820,
         "y": 160,
         "wires": []
     },
@@ -86,7 +86,7 @@
         "id": "b486ec536757e9b4",
         "type": "inject",
         "z": "57870d771583f7b6",
-        "name": "Leave a tour",
+        "name": "leaveTour",
         "props": [
             {
                 "p": "payload"
@@ -99,7 +99,7 @@
         "topic": "",
         "payload": "{}",
         "payloadType": "json",
-        "x": 210,
+        "x": 140,
         "y": 320,
         "wires": [
             [
@@ -111,7 +111,7 @@
         "id": "09ab1f28a58b736d",
         "type": "http request",
         "z": "57870d771583f7b6",
-        "name": "",
+        "name": "leave tour",
         "method": "DELETE",
         "ret": "obj",
         "paytoqs": "ignore",
@@ -121,7 +121,7 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
-        "x": 450,
+        "x": 420,
         "y": 320,
         "wires": [
             [
@@ -145,5 +145,32 @@
         "x": 670,
         "y": 320,
         "wires": []
+    },
+    {
+        "id": "be97aeeb3917acdd",
+        "type": "change",
+        "z": "57870d771583f7b6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{\"access-control-allow-credentials\":true,\"access-control-allow-headers\":\"X-Requested-With,Content-Type,Accept,Origin\",\"access-control-allow-methods\":\"*\",\"access-control-allow-origin\":\"*\",\"cache-control\":\"no-cache\",\"content-encoding\":\"gzip\",\"content-length\":24,\"content-type\":\"application/json;charset=utf-8\",\"date\":\"Fri,03 Jun 2022 18:28:18 GMT\",\"etag\":\"W/\\\"18-75CQH/5S+GSVjQZ7v4lQdeZ7cQQ\\\"\",\"expires\":-1,\"status\":\"200 OK\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 160,
+        "wires": [
+            [
+                "7462c6da5dbd7bae"
+            ]
+        ]
     }
 ]
